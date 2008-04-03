@@ -13,7 +13,7 @@ static vlong	offset0;
 void
 usage(void)
 {
-	fprint(2, "usage: reseal [-b blocksize] [-s ms] arenapart1 [name...]]\n");
+	fprint(2, "usage: reseal [-f] [-b blocksize] [-s ms] arenapart1 [name...]]\n");
 	threadexitsall(0);
 }
 
