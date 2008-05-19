@@ -1,10 +1,6 @@
 #include	"lib9.h"
 #include	<bio.h>
 
-#ifndef PLAN9PORT
-#define create(name, mode, perm) creat(name, perm)
-#endif
-
 enum
 {
 	MAXBUFS	= 20
