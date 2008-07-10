@@ -15,8 +15,11 @@ for(font){
 		font=`{9 basename $font .ttf}
 	if not if(~ $font *.sfd)
 		font=`{9 basename $font .sfd}
-	fontforge -c 'Open($1); Generate($2, "", -1, 72, "map.sfd")' \
-		$f0 $font^%s.pfb map.sfd
+	echo '
+		Open("'$f0'")
+		Generate("'$font^%s.pfb'", "", -1, 72, "map.sfd")
+	' >fontforge.in
+	fontforge -script fontforge.in
 	{
 		echo name $font
 		echo fontname $font
