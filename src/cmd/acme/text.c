@@ -734,6 +734,19 @@ texttype(Text *t, Rune r)
 			q0++;
 		textshow(t, q0, q0, TRUE);
 		return;
+	case Kcmd+'c':	/* %C: copy */
+		typecommit(t);
+		cut(t, nil, nil, 1, 0, nil, 0);
+		return;
+	case Kcmd+'x':	/* %X: cut */
+		typecommit(t);
+		cut(t, nil, nil, 1, 1, nil, 0);
+		return;
+	case Kcmd+'v':	/* %V: paste */
+		typecommit(t);
+		paste(t, nil, nil, 0, 1, nil, 0);
+		return;
+
 	Tagdown:
 		/* expand tag to show all text */
 		if(!t->w->tagexpand){
