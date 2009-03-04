@@ -47,6 +47,8 @@ _displayconnect(Display *d)
 		 * guis fork.
 		 */
 		putenv("NOLIBTHREADDAEMONIZE", "1");
+		if(argv0 == nil)
+			argv0 = "(argv0)";
 		execl("devdraw", argv0, argv0, "(devdraw)", nil);
 		sysfatal("exec devdraw: %r");
 	}
