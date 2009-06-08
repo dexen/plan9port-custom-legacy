@@ -823,7 +823,7 @@ setlabel(char *label)
 {
 	CFStringRef cs;
 
-	cs = CFStringCreateWithBytes(nil, (uchar*)osx.label, strlen(osx.label), kCFStringEncodingUTF8, false);
+	cs = CFStringCreateWithBytes(nil, (uchar*)label, strlen(label), kCFStringEncodingUTF8, false);
 	SetWindowTitleWithCFString(osx.window, cs);
 	CFRelease(cs);
 }
