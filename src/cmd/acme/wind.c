@@ -505,8 +505,15 @@ winsettag1(Window *w)
 	else{
 		k = w->tag.file->b.nc;
 		if(w->body.file->seq == 0){
-			runemove(new+i, Llook, 6);
-			i += 6;
+			if (0){
+				runemove(new+i, Llook, 6);
+				i += 6;
+			}
+			else{
+				static Rune foo[] = { ' ', 0 };
+				runemove(new+i, foo, 1);
+				i += 1;
+			}
 		}
 	}
 	new[i] = 0;
