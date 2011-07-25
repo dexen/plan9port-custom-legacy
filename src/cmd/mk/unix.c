@@ -55,16 +55,14 @@ exportenv(Envy *e, Shell *sh)
 {
 	int i;
 	char **p;
-	static char buf[16384];
 
 	p = 0;
 	for(i = 0; e->name; e++, i++) {
 		p = (char**) Realloc(p, (i+2)*sizeof(char*));
 		if(e->values)
-			snprint(buf, sizeof buf, "%s=%s", e->name,  wtos(e->values, sh->iws));
+			p[i] = smprint("%s=%s", e->name,  wtos(e->values, sh->iws));
 		else
-			snprint(buf, sizeof buf, "%s=", e->name);
-		p[i] = strdup(buf);
+			p[i] = smprint("%s=", e->name);
 	}
 	p[i] = 0;
 	environ = p;
