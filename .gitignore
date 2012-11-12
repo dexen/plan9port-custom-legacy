@@ -1,0 +1,7 @@
+*.o
+*.a
+/bin
+o.*
+*.tab.c
+*.tab.h
+y.output
