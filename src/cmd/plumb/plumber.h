@@ -29,6 +29,7 @@ enum
 	VIsdir,
 	VIsfile,
 	VMatches,
+	VMatchesMultiline,
 	VSet,
 	VStart,
 	VTo

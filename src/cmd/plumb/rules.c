@@ -64,6 +64,7 @@ char *verbs[] =
 	"isdir",
 	"isfile",
 	"matches",
+	"matchesmultiline",
 	"set",
 	"start",
 	"to",
@@ -361,6 +362,10 @@ parserule(Rule *r)
 			parseerror("%s not valid verb for object %s", verbs[r->verb], objects[r->obj]);
 		if(r->verb == VMatches){
 			r->regex = regcomp(r->qarg);
+			return;
+		}
+		if(r->verb == VMatchesMultiline){
+			r->regex = regcompnl(r->qarg);
 			return;
 		}
 		break;

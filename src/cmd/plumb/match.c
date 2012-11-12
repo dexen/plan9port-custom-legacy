@@ -283,6 +283,7 @@ matchpat(Plumbmsg *m, Exec *e, Rule *r)
 	case VIsfile:
 		return verbisfile(r->obj, m, r, e, ~DMDIR, DMDIR, &e->file);
 	case VMatches:
+	case VMatchesMultiline:
 		return verbmatches(r->obj, m, r, e);
 	case VSet:
 		verbset(r->obj, m, r, e);
