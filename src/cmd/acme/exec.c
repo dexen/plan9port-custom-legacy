@@ -93,6 +93,7 @@ static Rune LSort[] = { 'S', 'o', 'r', 't', 0 };
 static Rune LTab[] = { 'T', 'a', 'b', 0 };
 static Rune LUndo[] = { 'U', 'n', 'd', 'o', 0 };
 static Rune LZerox[] = { 'Z', 'e', 'r', 'o', 'x', 0 };
+static Rune LPipe[] = { '|', 0 };
 
 Exectab exectab[] = {
 	{ LAbort,		doabort,	FALSE,	XXX,		XXX,		},
@@ -124,6 +125,7 @@ Exectab exectab[] = {
 	{ LTab,		tab,		FALSE,	XXX,		XXX		},
 	{ LUndo,		undo,	FALSE,	TRUE,	XXX		},
 	{ LZerox,		zeroxx,	FALSE,	XXX,		XXX		},
+	{ LPipe,		edit,		FALSE,	XXX,		XXX		},
 	{ nil, 			0,		0,		0,		0		}
 };
 
@@ -180,7 +182,9 @@ execute(Text *t, uint aq0, uint aq1, int external, Text *argt)
 	}
 	r = runemalloc(q1-q0);
 	bufread(&t->file->b, q0, r, q1-q0);
-	e = lookup(r, q1-q0);
+	e = nil;
+	if(runestrncmp(r, LPipe, 1) != 0 || q1-q0 == 1)
+		e = lookup(r, q1-q0);
 	if(!external && t->w!=nil && t->w->nopen[QWevent]>0){
 		f = 0;
 		if(e)
