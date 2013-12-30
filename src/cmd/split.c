@@ -8,7 +8,7 @@ char	digit[] = "0123456789";
 char	*suffix = "";
 char	*stem = "x";
 char	suff[] = "aa";
-char	name[200];
+char	name[2048];
 Biobuf	bout;
 Biobuf	*output = &bout;
 
@@ -130,9 +130,11 @@ int
 matchfile(Resub *match)
 {
 	if(match[1].s.sp) {
-		int len = match[1].e.ep - match[1].s.sp;
-		strncpy(name, match[1].s.sp, len);
-		strcpy(name+len, suffix);
+		int len_match = match[1].e.ep - match[1].s.sp;
+		int len_stem = strlen(stem);
+		strcpy(name, stem);
+		strncpy(name+len_stem, match[1].s.sp, len_match);
+		strcpy(name+len_stem+len_match, suffix);
 		openf();
 		return 1;
 	} 
